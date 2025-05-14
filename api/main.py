@@ -2,7 +2,6 @@ from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, Request
-from core.config import configure_gpu
 from .routes import router
 import logging
 import os
@@ -17,9 +16,6 @@ logging.getLogger("httpx").setLevel(logging.ERROR)
 
 # Suppress PaddleOCR's verbose output
 os.environ['PADDLEOCR_SHOW_LOG'] = '0'
-
-# Configure GPU at startup
-configure_gpu()
 
 app = FastAPI()
 
