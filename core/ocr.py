@@ -5,8 +5,8 @@ import logging
 
 # Configure PaddleOCR with optimized settings
 ocr = PaddleOCR(
-    det_model_dir="mode ls/det",
-    rec_model_dir="models/rec",
+    det_model_dir="models/det/en/en_PP-OCRv3_det_infer",
+    rec_model_dir="models/rec/en/en_PP-OCRv4_rec_infer",
     cls_model_dir="models/cls",
     use_angle_cls=True,      # Enable angle classification for rotated text
     lang="en",               # Set to English language
@@ -16,7 +16,7 @@ ocr = PaddleOCR(
     det_db_thresh=0.2,       # Lower detection threshold for binarization
     det_db_unclip_ratio=1.6, # Adjust unclip ratio for text boxes
     use_dilation=True,       # Enable dilation to connect broken text
-    rec_batch_num=6,
+    rec_batch_num=6,         # Increase batch size for recognition
 
     # Increase batch size for recognition
 )
