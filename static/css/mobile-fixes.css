@@ -1,0 +1,237 @@
+/* Mobile fixes for OCR app */
+
+/* Fix content overflow issues */
+@media (max-width: 767px) {
+    body {
+        overflow: auto !important;
+        overscroll-behavior: none;
+        height: -webkit-fill-available;
+        position: fixed;
+        width: 100%;
+    }
+    
+    .app-container {
+        height: 100% !important;
+        max-height: -webkit-fill-available;
+        overflow: auto !important;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    /* Mobile Layout */
+    .main-content {
+        flex-direction: column;
+        padding: 10px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        height: auto;
+    }
+    
+    /* Side menu mobile optimization */
+    .side-menu {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+        height: auto;
+        max-height: none;
+        overflow: visible;
+    }
+    
+    /* Fix button layout */
+    .button-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .btn {
+        min-height: 44px; /* Better touch targets */
+        padding: 12px 16px;
+    }
+    
+    /* Content area improvements */
+    .content-area {
+        width: 100%;
+        overflow: visible;
+    }
+    
+    /* Better drop zone */
+    .drop-zone {
+        min-height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    /* Fix image preview */
+    .preview-container {
+        width: 100%;
+    }
+    
+    #imagePreview {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    
+    /* Result area fixes */
+    .result-section {
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    .result-text {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }    /* Fix navigation buttons and safe areas */
+    .nav-buttons {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: calc(64px + env(safe-area-inset-top)) !important;
+        padding: env(safe-area-inset-top) 16px 0 16px !important;
+        background: rgba(15, 23, 42, 0.9) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: space-between !important;
+        z-index: 1000 !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+      .back-button {
+        position: relative !important;
+        left: 0 !important;
+        margin-left: env(safe-area-inset-left, 0) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 42px !important;
+        height: 42px !important;
+        background: rgba(26, 27, 46, 0.8) !important;
+        border-radius: 10px !important;
+    }
+    
+    .github-button {
+        position: relative !important;
+        right: 0 !important;
+        margin-right: env(safe-area-inset-right, 0) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 42px !important;
+        height: 42px !important;
+        background: rgba(26, 27, 46, 0.8) !important;
+        border-radius: 10px !important;
+    }
+    
+    .app-container {
+        padding-bottom: env(safe-area-inset-bottom) !important;
+        padding-top: calc(64px + env(safe-area-inset-top)) !important;
+    }    /* Fix header positioning to account for fixed navbar */
+    .header {
+        margin-top: 0 !important;
+        padding-top: 10px !important;
+        padding-bottom: 5px !important;
+    }
+    
+    /* Ensure proper spacing for the fixed header */
+    .app-container {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* Ensure the app container has proper spacing */
+    .main-content {
+        padding-top: 5px !important;
+        flex: 1 !important;
+    }    /* Improve button touch feedback */
+    .back-button:active, .github-button:active {
+        background: rgba(108, 99, 255, 0.3) !important;
+        transform: scale(0.95) !important;
+    }
+
+    /* Add visual indicator for buttons */
+    .back-button, .github-button {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        transition: all 0.2s ease !important;
+        margin-top: 12px !important;
+    }
+
+    /* Ensure icons are centered and properly sized */
+    .back-button i, .github-button i {
+        font-size: 18px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+    .button-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn {
+        min-height: 40px;
+        font-size: 0.85rem;
+    }
+    
+    .drop-zone p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Fix for iOS viewport height issue */
+@supports (-webkit-touch-callout: none) {
+    .app-container {
+        height: -webkit-fill-available !important;
+    }
+    
+    body, html {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Ensure the loading animation is visible on mobile */
+@media (max-width: 767px) {
+    .loading {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        z-index: 9999 !important;
+        background: rgba(10, 12, 20, 0.9) !important; /* Darker background for mobile */
+    }
+    
+    /* Loading animation positioning fix */
+    .scanner-loader {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important; /* Stronger shadow for visibility */
+    }
+    
+    /* Ensure the processing text is visible */
+    .processing-text {
+        background: rgba(20, 22, 36, 0.9) !important;
+        padding: 8px 16px !important;
+        border-radius: 20px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Add pulse animation to loading text */
+    @keyframes mobile-text-pulse {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+    }
+    
+    .processing-text {
+        animation: mobile-text-pulse 1.5s infinite ease-in-out !important;
+    }
+}
