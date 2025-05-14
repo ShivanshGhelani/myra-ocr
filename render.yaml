@@ -1,13 +1,23 @@
 services:
   - type: web
-    name: text-scanner
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    name: text-scanner-ocr
+    env: docker
+    plan: standard
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.9.0
+      - key: PORT
+        value: 8000
+      - key: PADDLE_HOME
+        value: /app/paddleocr
       - key: RENDER_ENVIRONMENT
         value: production
-    healthCheckPath: /
+    healthCheckPath: /health
     autoDeploy: true
+    scaling:
+      minInstances: 1
+      maxInstances: 1
+    buildFilter:
+      ignoredPaths:
+        - "**/__pycache__/**"
+        - "myra-ocr/**"
+        - ".env*"
+        - "*.log"

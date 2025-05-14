@@ -47,6 +47,11 @@ async def read_root():
     with open("templates/ocr.html", "r") as f:
         return HTMLResponse(content=f.read(), status_code=200)
 
+@app.get("/health", include_in_schema=False)
+async def health_check():
+    """Health check endpoint for monitoring services like Render.com"""
+    return {"status": "healthy", "service": "text-scanner-ocr"}
+
 
 def create_app():
     return app
