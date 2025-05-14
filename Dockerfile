@@ -34,7 +34,7 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Install Python dependencies in order
 RUN pip install --no-cache-dir numpy Pillow
-RUN pip install --no-cache-dir paddlepaddle==2.5.2
+RUN pip install --no-cache-dir paddlepaddle==2.6.2
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application
