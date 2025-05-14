@@ -7,6 +7,6 @@ paddleocr
 fastapi>=0.108.0
 uvicorn>=0.30.0
 python-multipart>=0.0.9
-opencv-python>=4.9.0.80
+opencv-python
 python-dotenv>=1.0.1
 requests>=2.31.0
