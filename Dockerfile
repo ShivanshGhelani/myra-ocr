@@ -22,13 +22,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxslt-dev \
     wget \
     ffmpeg \
+    git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
+# Upgrade pip and install setuptools first
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+
+# Install Python dependencies in order
+RUN pip install --no-cache-dir numpy Pillow
+RUN pip install --no-cache-dir paddlepaddle==2.5.2
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application
