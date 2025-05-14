@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import logging
 
-# Configure PaddleOCR with optimized settings
+# Configure PaddleOCR with optimized settings and memory efficiency
 ocr = PaddleOCR(
     det_model_dir="models/det/en/en_PP-OCRv3_det_infer",
     rec_model_dir="models/rec/en/en_PP-OCRv4_rec_infer",
@@ -16,9 +16,13 @@ ocr = PaddleOCR(
     det_db_thresh=0.2,       # Lower detection threshold for binarization
     det_db_unclip_ratio=1.6, # Adjust unclip ratio for text boxes
     use_dilation=True,       # Enable dilation to connect broken text
-    rec_batch_num=6,         # Increase batch size for recognition
-
-    # Increase batch size for recognition
+    rec_batch_num=1,         # Lower batch size to reduce memory usage
+    enable_mkldnn=True,      # Enable MKLDNN acceleration
+    cpu_threads=4,           # Limit CPU threads
+    # Memory optimization settings
+    ir_optim=True,          # Enable IR graph optimization
+    use_lite=False,         # Disable lite mode as it can be unstable
+    enable_tensorrt=False,   # Disable TensorRT as we're using CPU
 )
 
 def preprocess_image(image):
