@@ -5,6 +5,9 @@ import logging
 
 # Configure PaddleOCR with optimized settings
 ocr = PaddleOCR(
+    det_model_dir="mode ls/det",
+    rec_model_dir="models/rec",
+    cls_model_dir="models/cls",
     use_angle_cls=True,      # Enable angle classification for rotated text
     lang="en",               # Set to English language
     show_log=False,          # Disable logging output
@@ -13,7 +16,9 @@ ocr = PaddleOCR(
     det_db_thresh=0.2,       # Lower detection threshold for binarization
     det_db_unclip_ratio=1.6, # Adjust unclip ratio for text boxes
     use_dilation=True,       # Enable dilation to connect broken text
-    rec_batch_num=6,         # Increase batch size for recognition
+    rec_batch_num=6,
+
+    # Increase batch size for recognition
 )
 
 def preprocess_image(image):
